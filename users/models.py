@@ -84,11 +84,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'email'
 
     
-    def save(self, *args, **kwargs):
-        # Ensure the password is hashed before saving
-        self.password = make_password(self.password)
-        super().save(*args, **kwargs)
-   
    
 
 class UserActivityLog(models.Model):
@@ -102,6 +97,20 @@ class UserActivityLog(models.Model):
               
     class Meta:
         db_table = 'activity_log'
+
+
+class UserRole(models.Model):
+    """
+    Args:
+        models : Model for mapping user with respective roles
+    """
+    role = models.ForeignKey(Role,on_delete=models.CASCADE,related_name='user_role',null = True,blank=True)
+    user=models.ForeignKey(User,related_name='userrole_user',null=True,on_delete=models.CASCADE)
+    is_active = models.BooleanField(default= True)
+    
+    class Meta:
+        db_table = 'user_roles'
+        
         
         
 

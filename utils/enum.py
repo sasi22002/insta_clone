@@ -2,9 +2,7 @@ from enum import Enum
 
 class RoleEnum(Enum):
     superadmin=1
-    service_provider=2
-    customer=3
-    admin=4
+    user = 2
 
 
 class GenderEnum(Enum):
@@ -32,4 +30,14 @@ class ScreenEnum(Enum):
     service ="service"
     badge = "badge"
     
+
+class StaticEnum(Enum):
+    forget_otp ="ForgetOtp"
+    forget_password_otp ="Otp"
+    forget_password_email ="Email"
+    email_verify ="EmailVerify"
+    timeformatT = "%Y-%m-%dT%H:%M:%S"
+    accepted = "Accepted"
+    completed = "Completed"
+    rejected = "Rejected"
     
